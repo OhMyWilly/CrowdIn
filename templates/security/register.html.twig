@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<h1 class="center">Register</h1>
+	<div>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<div class="col-sm d-flex justify-content-center">
+			<input id="submit" type="submit" name="submit" value="Register" class="btn btn-dark">
+		</div><br>
+		{{ form_end(form)}}
+	</div>
+{% endblock %}

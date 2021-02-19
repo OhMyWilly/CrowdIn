@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les projets
+{% endblock %}
+
+{% block body %}
+<style>
+	.margined {
+		margin-left: 21%;
+		margin-right: 21%;
+	}
+	.rectangle {
+		border: 1px solid;
+		border-spacing: 2px;
+	}
+</style>
+
+<div class="row">
+	<h1 class="center">Projets</h1>
+</div>
+<br>
+{% for project in projects %}
+	<div class="rectangle">
+		<div class="row d-flex justify-content-center">
+			<h4 class="row d-flex justify-content-center">{{ project.name}}</h4>
+		</div>
+		<div class=" row">
+			<div class="col-md-4 d-flex justify-content-end">
+				<img src="img/user.png" alt="..." class="img-thumbnail" width="110px" height="110px">
+			</div>
+			<div class="col-md d-flex align-items-center">
+				<img title="Langue source {{ project.LangSource }}" src="https://www.countryflags.io/{{ project.LangSource }}/flat/32.png">
+				Langue Source &nbsp;&nbsp;
+				<img title="Langue destination {{ project.LangDest }}" src="https://www.countryflags.io/{{ project.LangDest }}/flat/32.png">
+				Langue Souhaité
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 d-flex justify-content-end">
+				<p>
+					Autheur
+					{{ project.author}}</p>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center">
+			<h5 class="row d-flex justify-content-center">Détails</h5>
+		</div>
+		<div class="row d-flex justify-content-center margined text-center">
+			<p>{{ project.details}}</p>
+		</div>
+		<br>
+		<form method="POST">
+			<div class="d-flex justify-content-center">
+				<button id="subject" name="IFile" value="{{ project.id }}" class="d-flex justify-content-center btn btn-outline-primary">Télécharger le fichier i18n</button>
+			</div>
+			<br>
+			{% if 1 %}
+				<div class="d-flex justify-content-center">
+					<h5>
+						Derniere traduction proposée</h5>
+				</div><br>
+				<input id="isProposal" type="hidden" name="Project" value="">
+				<div class="d-flex justify-content-center">
+					<button name="IFile" value="{{ project.id }}" id="lastResult" class="d-flex justify-content-center btn btn-outline-secondary">Telecharger le dernier résultat</button>
+				</div><br>
+				<div class="row margined">
+					<div class="d-flex justify-content-center">
+						<h5>Proposez votre traduction</h5>
+					</div>
+					<div class="row">
+						<br>
+					</div>
+					<div class="input-group mb-3">
+						<div class="custom-file">
+							<input type="hidden" name="idProject" value="{{ project.id }}">
+							<input type="file" class="custom-file-input" id="inputGroupFile02" name="resultFile">
+							<label class="custom-file-label" for="inputGroupFile02">
+								Choose file</label>
+						</div>
+						<div class="input-group-append">
+							<button class="input-group-text">Envoyer</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div><br><br>
+		<script src="{{ asset('js/project.js') }}"></script>
+	{% endif %}
+</div><br>{% endfor %}{{ knp_pagination_render(projects) }}</div>{% endblock %}

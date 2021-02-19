@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crowdin, un site de traduction communautaire
+{% endblock %}
+
+{% block body %}
+
+	<body>
+		<!--Featured Section-->
+		<section id="features" class="features">
+			<div class="container">
+				<div class="row">
+					<div class="main_features p-top-100">
+						<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+							<div class="head_title text-center">
+								<img src="{{ asset('img/flags.png') }}"/>
+								<h2>CrowdIn</h2>
+								<h5>
+									Crowdin est un site de traduction communautaire de fichiers i18n ayant pour but de mettre en relation des traducteurs avec des personnes ayant besoin de faire traduire leurs projet dans une langue qu'ils ne maitrisent pas.
+								</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+{% endblock %}

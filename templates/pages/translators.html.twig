@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Traducteurs
+{% endblock %}
+
+{% block body %}
+	<style type="text/css">
+		.tg {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+		.tg td {
+			border-color: black;
+			border-style: solid;
+			border-width: 1px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+		.tg th {
+			border-color: black;
+			border-style: solid;
+			border-width: 1px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+		.tg .tg-dkcx {
+			background-color: #414749;
+			font-size: 18px;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-baqh {
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-70gk {
+			border-color: inherit;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 16px;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-agit {
+			background-color: #414749;
+			border-color: inherit;
+			color: #ffffff;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-5906 {
+			background-color: #414749;
+			border-color: inherit;
+			color: #ffffff;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 18px;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-2p4q {
+			background-color: #414749;
+			border-color: inherit;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 18px;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-0pky {
+			border-color: inherit;
+			text-align: left;
+			vertical-align: top
+		}
+		@media screen and(max-width: 767px) {
+			.tg {
+				width: auto !important;
+			}
+			.tg col {
+				width: auto !important;
+			}
+			.tg-wrap {
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+		}
+	</style>
+
+	<div class="row text-center">
+		<h1>Traducteurs</h1>
+	</div>
+	<br>
+	<div class="row">
+		<p>Ici vous retrouverez tous les traducteurs inscrits sur la plateforme, n'hésitez pas a proposer des projets en fonctions de leurs capacités !</p>
+	</div>
+	<br>
+	<div class="row"></div>
+	<div class="tg-wrap">
+		<table class="tg" style="undefined;table-layout: fixed; width: 100%">
+
+			<tbody>
+				<tr>
+					<td class="tg-2p4q">
+						<span style="font-weight:bold;color:#FFF">Statut</span>
+					</td>
+					<td class="tg-agit">Email</td>
+					<td class="tg-5906">
+						<span style="font-weight:bold">Langues</span>
+					</td>
+					<td class="tg-dkcx">
+						<span style="font-weight:bold;color:#FFF">Dernier projet</span>
+					</td>
+					<td class="tg-2p4q">
+						<span style="font-weight:bold;color:#FFF">Bio</span>
+					</td>
+				</tr>
+				{% for user in users %}
+					{% if user != app.user and user.countries|length > 2  %}
+						<tr>
+							<td class="tg-70gk">Disponible 🟢</td>
+							<td class="tg-70gk">{{ user.email }}</td>
+							<td class="tg-0pky">
+								{% for country in user.countries %}
+									{% if country != "" %}
+										<img src="https://www.countryflags.io/{{ country }}/flat/48.png">
+									{% endif %}
+								{% endfor %}
+							</td>
+							<td class="tg-baqh">
+								<a href="{{ path('app_projects')}}">ici</a>
+							</td>
+							<td class="tg-0pky">
+								{% if user.bio != "Description ici 🙂..." %}
+									{{ user.bio }}
+								{% else %}
+									<p>L'utilisateur n'a pas renseigné de bio pour l'instant 😔</p>
+								{% endif %}
+							</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+				{{ knp_pagination_render(users) }}
+			</tbody>
+		</table>
+	</div><br>
+
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte
+{% endblock %}
+
+{% block body %}
+	<style type="text/css">
+		.tg {
+			border-collapse: collapse;
+			border-color: black;
+			border-spacing: 0;
+			border-style: solid;
+			border-width: 1px;
+		}
+		.tg td {
+			border-style: solid;
+			border-width: 0;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+		.tg th {
+			border-style: solid;
+			border-width: 0;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+		.tg .tg-fqdu {
+			border-color: inherit;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 18px;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-agit {
+			background-color: #414749;
+			border-color: inherit;
+			color: #ffffff;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-a7n7 {
+			border-color: #656565;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 18px;
+			text-align: center;
+			vertical-align: top
+		}
+		.tg .tg-71di {
+			border-color: #333333;
+			font-family: "Comic Sans MS", cursive, sans-serif !important;
+			font-size: 18px;
+			text-align: center;
+			vertical-align: top
+		}
+		@media screen and(max-width: 767px) {
+			.tg {
+				width: auto !important;
+			}
+			.tg col {
+				width: auto !important;
+			}
+			.tg-wrap {
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+		}
+	</style>
+	<br>
+	<div class="row">
+		<div class="col-sm d-flex justify-content-center">
+			<h1>Mon compte</h1>
+		</div>
+	</div>
+	<br><br><br>
+	<div class="row">
+		<div class="col-lg-3">
+			<img src="img/user.png" alt="..." class="img-thumbnail" width="200px" height="200px">
+		</div>
+		<div class="col-lg d-flex justify-content-start">
+			<div class="tg-wrap">
+				<table class="tg" style="undefined;table-layout: fixed; width: 70%">
+					<colgroup>
+						<col style="width: 102px">
+						<col style="width: 245px">
+					</colgroup>
+					<tbody>
+						<tr>
+							<td class="tg-agit">Prenom</td>
+							<td class="tg-a7n7">{{ app.user.firstname }}</td>
+						</tr>
+						<tr>
+							<td class="tg-agit">Nom</td>
+							<td class="tg-71di">{{ app.user.lastname }}</td>
+						</tr>
+						<tr>
+							<td class="tg-agit">Email</td>
+							<td class="tg-fqdu">{{ app.user.email }}</td>
+						</tr>
+						<tr>
+							<td class="tg-agit">Role</td>
+							<td class="tg-a7n7">
+								{% if app.user.countries|length > 2  %}
+									Traducteur
+								{% else %}
+									Utilisateur
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td class="tg-agit">Statut</td>
+							<td class="tg-fqdu">
+								Disponible 🟢
+								{# {% if appp.user.status == true %}
+															Occupé(e) 🔴																																						{% else %}
+															Disponible 🟢
+														{% endif %} #}
+							</td>
+						</tr>
+						<tr>
+							<td class="tg-agit">Bio</td>
+							<form id="account_form" method="POST">
+								<td class="tg-fqdu">
+									{% if app.user.bio %}
+										<textarea name="bio" id="bio" cols="30" rows="3">{{ app.user.bio }}</textarea>
+									{% else %}
+										<textarea name="bio" id="bio" cols="30" rows="3">Description ici 🙂...</textarea>
+									{% endif %}
+									<input type="submit" value="Sauvegarder">
+								</td>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm d-flex justify-content-center">
+			<h2>Mes Langues</h2>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm d-flex justify-content-center">
+			<label for="language">Ajoutez un langage depuis la liste de pays:</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm d-flex justify-content-center">
+			<select id="languages" name="language">
+				<option value="" selected disabled hidden>Pays ici</option>
+				{% for key, value in countries %}
+					<option value="{{ key }}">{{ value }}</option>
+				{% endfor %}
+			</select>
+			<input type="hidden" name="id" value="{{ app.user.id }}">
+			<button id="countrySure" type="button" disabled>Ajouter</button>
+		</form>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm d-flex justify-content-center">
+			{% if app.user.countries.1 is defined %}
+				{% for key in app.user.countries %}
+					{% if key != "" %}
+						<img src="https://www.countryflags.io/{{ key }}/flat/64.png">
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				<p>Vos langues seront visible ici</p>
+
+			{% endif %}
+
+		</div>
+	</div>
+	<br>
+	<script>
+		$("#countrySure").click(function () {
+if (confirm("Etes-vous sûr de vouloir ajouter une langue ? Ce choix est irreversible, seul un admin pourrait corriger une erreur de votre part.")) {
+$("#account_form").submit();
+}
+});
+$("#languages").click(function () {
+$("#countrySure").removeAttr("disabled");
+});
+	</script>
+{% endblock %}

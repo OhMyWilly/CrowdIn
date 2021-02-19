@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil, nouveautés
+{% endblock %}
+
+{% block body %}
+	<style>
+		.rectangle {
+			border: 1px solid;
+			border-spacing: 2px;
+		}
+	</style>
+	<section id="features" class="features">
+		<div class="container">
+			<div class="row">
+				<div class="main_features p-top-10">
+					<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+						<div class="text-center">
+							<h1>Page d'accueil</h1>
+							<br>
+							<div class="divider"></div><br>
+							<h3>Règles</h3><br>
+							<p>Par défaut, chaque projet dispose d'un seul fichier i18n représentant sa langue d'origine. Ce fichier est à la base de la création d'un projet. Un fichier i18n est un fichier structuré qui permet au site d'intégrer plusieurs langues. Il peut avoir différents formats (YML, CSV, XLIFF, etc.) dépendants de l'utilisateur. Le nom du fichier indique la langue de celui-ci ainsi que son domaine. Exemple: message.fr.csv (ce fichier contiendra les traductions françaises pour le domaine message au format csv)
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><br>
+		<div class="divider"></div>
+		<div class="p-top-20">
+			<h3 class="text-center">Notes de Patch</h3><br>
+		</div>
+		<div class="container rectangle">
+			<div class="row">
+				<div class="p-top-10">
+					<p style=" float:left;">
+						<img src="img/mad.jpg" alt="Photo" class="img-thumbnail" width="50px" height="50px"/>
+					</p>
+					<div class="d-flex justify-content-center">
+						<p>Vous pouvez maintenant ajouter vos projets en respectant le format i18n !</p>
+					</div>
+					<div class="d-flex align-items-start flex-column sticky-top">
+						<h5>
+							Madani A.
+						</h5>
+						<p>Admin</p>
+					</div>
+					<p>04/02/2021</p>
+				</div>
+			</div>
+		</div><br>
+		<div class="container rectangle">
+			<div class="row">
+				<div class="p-top-10">
+					<p style=" float:left;">
+						<img src="img/wil.jpg" alt="Photo" class="img-thumbnail" width="50px" height="50px"/>
+					</p>
+					<div class="d-flex justify-content-center">
+						<p>Les pages du site ont subis quelques ravalement de façade pour le plaisir de vos yeux !</p>
+					</div>
+					<div class="d-flex align-items-start flex-column sticky-top">
+						<h5>
+							William K.
+						</h5>
+						<p>Admin</p>
+					</div>
+					<p>03/02/2021</p>
+				</div>
+			</div>
+		</div><br>
+		<div class="container rectangle">
+			<div class="row">
+				<div class="p-top-10">
+					<p style=" float:left;">
+						<img src="img/mad.jpg" alt="Photo" class="img-thumbnail" width="50px" height="50px"/>
+					</p>
+					<div class="d-flex justify-content-center">
+						<p>Il est désormais possible de créer un compte, de le modifier et de se connecter au site !</p>
+					</div>
+					<div class="d-flex align-items-start flex-column sticky-top">
+						<h5>
+							Madani A.
+						</h5>
+						<p>Admin</p>
+					</div>
+					<p>04/02/2021</p>
+				</div>
+			</div>
+		</div><br>
+	</section>
+{% endblock %}

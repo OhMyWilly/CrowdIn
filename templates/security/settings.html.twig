@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paramètres
+{% endblock %}
+{% block body %}
+
+	<style>
+		.tiny_input {
+			margin-left: 40%;
+			margin-right: 40%;
+			padding: 10;
+		}
+	</style>
+	<div class="row">
+		<h1 class="center">Paramètres</h1>
+	</div>
+	<br><br><br>
+	<div class="row">
+		<h4 class="center">Modifier votre email:</h4>
+	</div>
+	<form method="POST">
+		<div class="row tiny_input">
+			<input type="email" name="email" placeholder="{{ app.user.email}}">
+		</div>
+		<div class="col-sm d-flex justify-content-center">
+			<input type="hidden" name="id" value="{{ app.user.id }}">
+			<input id="submit" type="submit" value="Sauvegarder" class="btn btn-dark">
+		</div>
+	</form>
+	<br><br>
+	<div class="row">
+		<h4 class="center">Modifier votre mot de passe:</h4>
+	</div>
+	<form method="POST">
+		<div class="row tiny_input">
+			<input type="password" name="password" placeholder="•••••••">
+		</div>
+		<div class="col-sm d-flex justify-content-center">
+			<input type="hidden" name="id" value="{{ app.user.id }}">
+			<input id="submit" type="submit" value="Sauvegarder" class="btn btn-dark">
+		</div>
+	</form>
+	<br><br><br><br>
+
+{% endblock %}

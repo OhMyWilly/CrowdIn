@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Drapeaux
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="row text-center">
+		<h1>Les Drapeaux</h1>
+	</div>
+	<br>
+	<div class="row text-center">
+		<p>Ici vous retrouverez tout les drapeaux du monde, n'hésitez pas a les apprendre par coeur 😊!</p>
+	</div>
+	<br>
+
+
+	<div
+		class="row">
+		{# {% for i in 1..30 %} #}
+		{% for key, country in countries %}
+
+			{% if (loop.index % 12 == 0) %}
+			</div>
+			<div class="row">
+			{% endif %}
+			<div class="col-md-1">
+				<img id="{{ key }}" title="{{ country }}" src="https://www.countryflags.io/{{ key }}/flat/64.png">
+			</div>
+		{% endfor %}
+	</div><br>
+{% endblock %}{# {{ dump(countries)}} #}{# <img
+																																																							src="https://www.countryflags.io/be/flat/64.png"> #}
+{# {% for key, country in countries %}
+																																														{{ dump(key)}}
+																																											
+																																														<img src="https://www.countryflags.io/{{ key }}/flat/30.png"> #}
